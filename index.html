@@ -44,8 +44,8 @@
       border-radius: 40px;
       width: 140px;
       height: 80px;
-      margin: 15px 0;
-      padding: 14px 0;
+      margin: 8px 0;
+      padding: 18px 0;
       cursor: pointer;
       display: flex;
       flex-direction: column;
@@ -149,10 +149,13 @@
     .volume-control input[type=range] {
       -webkit-appearance: none;
       width: 100%;
-      height: 14px;
+      height: 18px;
       background: linear-gradient(to right, white 77%, #ffecb3 77%);
       border-radius: 5px;
       outline: none;
+    }
+    .volume-label {
+      margin-bottom: 5px;
     }
     .volume-percentage {
       margin-top: 5px;
@@ -208,7 +211,8 @@
         <img src="https://img.icons8.com/ios-filled/100/laptop.png" alt="Laptop 4">
         <span>Laptop 4</span>
       </button>
-      <div class="volume-control">
+      <div class="volume-control" id="volumeContainer">
+        <div class="volume-label">Volume</div>
         <input id="volumeSlider" type="range" min="0" max="100" value="77" oninput="updateVolumeDisplay(this.value)">
         <div id="volumeValue" class="volume-percentage">77%</div>
       </div>
@@ -275,7 +279,7 @@
       </div>
     </div>
   </div>
-  <div class="version">Version 1.0.7</div>
+  <div class="version">Version 1.0.8</div>
   <script>
     function navigate(pageId) {
       const sections = document.querySelectorAll('.content');
@@ -289,7 +293,9 @@
 
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebar');
+      const volumeContainer = document.getElementById('volumeContainer');
       sidebar.classList.toggle('collapsed');
+      volumeContainer.style.display = sidebar.classList.contains('collapsed') ? 'none' : 'block';
     }
 
     function updateVolumeDisplay(val) {

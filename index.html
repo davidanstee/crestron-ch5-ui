@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crestron Room Control</title>
+  <link rel="stylesheet" href="styles/styles.css" />
+  <script src="scripts/cr-com-lib.js"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <button>Video Wall</button>
+    <button>Apple TV</button>
+    <button>Laptop 1</button>
+    <button>Laptop 2</button>
+    <button>Laptop 3</button>
+    <button>Laptop 4</button>
+  </div>
+  <div class="main-content">
+    <div class="header">Currently viewing: Apple TV</div>
+    <div class="view-selector">
+      <button>Single</button>
+      <button>Dual</button>
+      <button>Quad</button>
+    </div>
+    <div class="content-box">
+      <p>Apple TV Content Here</p>
+    </div>
+    <div class="remote">
+      <svg width="100" height="100" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="48" stroke="black" stroke-width="2" fill="#eee" />
+        <text x="50%" y="54%" text-anchor="middle" font-size="20" fill="black">OK</text>
+      </svg>
+    </div>
+  </div>
+  <div class="volume">
+    <label>Volume</label>
+    <input type="range" min="0" max="100" value="50"/>
+  </div>
+</body>
+</html>

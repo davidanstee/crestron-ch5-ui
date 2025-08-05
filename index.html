@@ -23,7 +23,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 10px 0;
+      padding: 10px 0 100px 0; /* bottom padding for volume */
       transition: width 0.3s ease-in-out;
       overflow: hidden;
       animation: fadeIn 0.5s ease;
@@ -124,12 +124,23 @@
     }
     .volume-control {
       position: absolute;
-      bottom: 20px;
-      left: 20px;
-      animation: fadeIn 1s ease;
+      bottom: 10px;
+      left: 10px;
+      width: 100px;
+      text-align: center;
+      color: white;
+      font-size: 12px;
     }
     .volume-control input[type=range] {
-      width: 100px;
+      -webkit-appearance: none;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, white 77%, #ffecb3 77%);
+      border-radius: 5px;
+      outline: none;
+    }
+    .volume-percentage {
+      margin-top: 5px;
     }
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -153,7 +164,7 @@
         <span>Apple TV</span>
       </button>
       <button onclick="navigate('iptv')">
-        <img src="https://img.icons8.com/ios-filled/100/television.png" alt="IPTV">
+        <img src="https://img.icons8.com/ios-filled/100/monitor--v1.png" alt="IPTV">
         <span>IP TV</span>
       </button>
       <button onclick="navigate('laptop1')">
@@ -172,6 +183,10 @@
         <img src="https://img.icons8.com/ios-filled/100/laptop.png" alt="Laptop 4">
         <span>Laptop 4</span>
       </button>
+      <div class="volume-control">
+        <input type="range" min="0" max="100" value="77" id="volumeSlider" oninput="updateVolumeDisplay(this.value)">
+        <div class="volume-percentage">Volume: <span id="volumeValue">77%</span></div>
+      </div>
     </div>
     <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
 
@@ -192,7 +207,7 @@
 
     <div class="content" id="apple">
       <h2>Apple TV Control</h2>
-      <img class="remote" src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Apple_Remote.svg" alt="Apple TV Remote">
+      <img class="remote" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Apple_Remote.svg/200px-Apple_Remote.svg.png" alt="Apple TV Remote">
     </div>
 
     <div class="content" id="iptv">
@@ -220,10 +235,6 @@
     </div>
   </div>
 
-  <div class="volume-control">
-    Volume: <input type="range" min="0" max="100" value="77">
-  </div>
-
   <script>
     function navigate(pageId) {
       const sections = document.querySelectorAll('.content');
@@ -238,6 +249,12 @@
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebar');
       sidebar.classList.toggle('collapsed');
+    }
+
+    function updateVolumeDisplay(val) {
+      document.getElementById('volumeValue').innerText = val + '%';
+      const slider = document.getElementById('volumeSlider');
+      slider.style.background = `linear-gradient(to right, white ${val}%, #ffecb3 ${val}%)`;
     }
   </script>
 </body>

@@ -24,12 +24,12 @@
       flex: 1;
     }
     .sidebar {
-      width: 200px;
-      background-color: #041b1d;
+      width: 180px;
+      background-color: #03191b;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 20px 0 120px 0;
+      padding: 10px 0 100px 0;
       transition: width 0.3s ease-in-out;
       overflow: hidden;
       animation: fadeIn 0.5s ease;
@@ -42,10 +42,10 @@
       background-color: rgba(255, 255, 255, 0.1);
       border: none;
       border-radius: 40px;
-      width: 150px;
-      height: 70px;
+      width: 140px;
+      height: 80px;
       margin: 15px 0;
-      padding: 10px 0;
+      padding: 14px 0;
       cursor: pointer;
       display: flex;
       flex-direction: column;
@@ -82,7 +82,7 @@
     .toggle-btn {
       position: absolute;
       top: 20px;
-      left: 200px;
+      left: 180px;
       background-color: #0d3b3f;
       border: none;
       color: white;
@@ -110,10 +110,11 @@
       display: flex;
     }
     .content-box {
-      background-color: rgba(0, 0, 0, 0.3);
+      background-color: rgba(0, 0, 0, 0.2);
       padding: 40px;
       border-radius: 16px;
       max-width: 600px;
+      width: 100%;
     }
     .remote {
       width: 200px;
@@ -140,7 +141,7 @@
       position: absolute;
       bottom: 10px;
       left: 10px;
-      width: 100px;
+      width: 160px;
       text-align: center;
       color: white;
       font-size: 12px;
@@ -148,7 +149,7 @@
     .volume-control input[type=range] {
       -webkit-appearance: none;
       width: 100%;
-      height: 5px;
+      height: 14px;
       background: linear-gradient(to right, white 77%, #ffecb3 77%);
       border-radius: 5px;
       outline: none;
@@ -158,9 +159,13 @@
     }
     .version {
       text-align: center;
-      padding: 10px;
       font-size: 12px;
       color: #ccc;
+      margin: 10px 0;
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
     }
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -173,8 +178,104 @@
   </style>
 </head>
 <body>
-  <!-- Content remains unchanged -->
-  <div class="version">Version 1.0.4</div>
+  <div class="container">
+    <div class="sidebar" id="sidebar">
+      <button onclick="navigate('videoWall')">
+        <img src="https://img.icons8.com/ios-filled/100/video-wall.png" alt="Video Wall">
+        <span>Video Wall</span>
+      </button>
+      <button onclick="navigate('apple')">
+        <img src="https://img.icons8.com/ios-filled/100/mac-os.png" alt="Apple TV">
+        <span>Apple TV</span>
+      </button>
+      <button onclick="navigate('iptv')">
+        <img src="https://img.icons8.com/ios-filled/100/monitor--v1.png" alt="IPTV">
+        <span>IP TV</span>
+      </button>
+      <button onclick="navigate('laptop1')">
+        <img src="https://img.icons8.com/ios-filled/100/laptop.png" alt="Laptop 1">
+        <span>Laptop 1</span>
+      </button>
+      <button onclick="navigate('laptop2')">
+        <img src="https://img.icons8.com/ios-filled/100/laptop.png" alt="Laptop 2">
+        <span>Laptop 2</span>
+      </button>
+      <button onclick="navigate('laptop3')">
+        <img src="https://img.icons8.com/ios-filled/100/laptop.png" alt="Laptop 3">
+        <span>Laptop 3</span>
+      </button>
+      <button onclick="navigate('laptop4')">
+        <img src="https://img.icons8.com/ios-filled/100/laptop.png" alt="Laptop 4">
+        <span>Laptop 4</span>
+      </button>
+      <div class="volume-control">
+        <input id="volumeSlider" type="range" min="0" max="100" value="77" oninput="updateVolumeDisplay(this.value)">
+        <div id="volumeValue" class="volume-percentage">77%</div>
+      </div>
+    </div>
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+
+    <div class="content active" id="main">
+      <div class="content-box">
+        <h2>Currently viewing <span style="color: grey">MTR</span></h2>
+        <p>Please make a selection on<br>the LEFT Sidebar</p>
+      </div>
+    </div>
+
+    <div class="content" id="videoWall">
+      <div class="content-box">
+        <h2>Video Wall Layout</h2>
+        <div class="video-wall-options">
+          <button>Single</button>
+          <button>Dual</button>
+          <button>Quad</button>
+          <button>Large Center + 2</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="content" id="apple">
+      <div class="content-box">
+        <h2>Apple TV Control</h2>
+        <img class="remote" src="https://cdsassets.apple.com/live/7WUAS350/images/apple-tv/apple-tv-siri-remote-2gen.png" alt="Apple TV Remote">
+      </div>
+    </div>
+
+    <div class="content" id="iptv">
+      <div class="content-box">
+        <h2>IP TV Channels</h2>
+        <div class="iptv-options">
+          <button>Spectrum</button>
+          <button>WABC</button>
+          <button>WPIX</button>
+          <button>Telemundo</button>
+          <button>MeTV</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="content" id="laptop1">
+      <div class="content-box">
+        <h2>Currently Sharing<br>LAPTOP 1</h2>
+      </div>
+    </div>
+    <div class="content" id="laptop2">
+      <div class="content-box">
+        <h2>Currently Sharing<br>LAPTOP 2</h2>
+      </div>
+    </div>
+    <div class="content" id="laptop3">
+      <div class="content-box">
+        <h2>Currently Sharing<br>LAPTOP 3</h2>
+      </div>
+    </div>
+    <div class="content" id="laptop4">
+      <div class="content-box">
+        <h2>Currently Sharing<br>LAPTOP 4</h2>
+      </div>
+    </div>
+  </div>
+  <div class="version">Version 1.0.7</div>
   <script>
     function navigate(pageId) {
       const sections = document.querySelectorAll('.content');

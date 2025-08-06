@@ -72,8 +72,6 @@
       position:relative;
     }
     .content.active { display:flex; }
-
-    /* Common content-box */
     .content-box {
       background: rgba(0,0,0,0.2);
       padding: 20px;
@@ -82,264 +80,187 @@
       color: white;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
+      position: relative;
     }
-
     /* Video Wall */
     .layout-controls { display:flex; gap:20px; justify-content:center; margin-bottom:20px; }
-    .layout-controls button {
-      background: rgba(255,255,255,0.1); border:none; border-radius:40px;
-      width:120px; height:100px; display:flex;
-      flex-direction:column; align-items:center;
-      justify-content:center; gap:6px; cursor:pointer;
-      transition:background .2s; padding:10px;
-    }
+    .layout-controls button { background:rgba(255,255,255,0.1); border:none; border-radius:40px; width:120px; height:100px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; cursor:pointer; transition:background .2s; }
     .layout-controls button:hover, .layout-controls button.active { background:rgba(255,255,255,0.2); }
-    .layout-controls img { width:32px; height:32px; filter: brightness(0) invert(1); }
+    .layout-controls img { width:32px; height:32px; filter:brightness(0) invert(1); }
     .layout-controls span { color:white; font-size:12px; }
-
-    /* 16:9 Bezel */
-    .bezel {
-      position: relative;
-      width: 100%; max-width: 1000px;
-      padding-top: 56.25%; /* 16:9 */
-      background: rgba(0,0,0,0.15);
-      border: 2px dashed rgba(255,255,255,0.5);
-      border-radius: 16px;
-      margin: auto;
-      overflow: hidden;
-    }
-    .bezel .inner {
-      position: absolute;
-      top: 4%; left: 4%; right: 4%; bottom: 4%;
-      display: flex; flex-direction: column;
-      justify-content: flex-start;
-    }
-    .bezel .inner .content-box {
-      flex: 1;
-      max-width: none;
-      width: 100%; height: 100%;
-      padding: 0;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .panel-container { display:grid; gap:10px; flex:1; }
-    .layout-single .panel-container { grid-template-columns:1fr; }
-    .layout-dual .panel-container { grid-template-columns:1fr 1fr; }
+    .panel-container { display:grid; gap:10px; width:100%; }
+    .layout-single .panel-container { grid-template-columns:1fr; grid-auto-rows: calc((100vw - 260px) * 9 / 16); }
+    .layout-dual .panel-container { grid-template-columns:1fr 1fr; grid-auto-rows: calc(((100vw - 260px) / 2) * 9 / 16); }
     .layout-quad .panel-container { grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; }
-    .layout-large2 .panel-container { grid-template-columns:2fr 1fr 1fr; }
-
+    .layout-large2 .panel-container { display:flex; gap:10px; }
     .panel {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid #0c525d;
-      border-radius: 8px;
-      display: flex; align-items:center;
-      justify-content:center; font-size:18px;
-      color:white; cursor:pointer;
-      overflow: hidden;
+      background:rgba(255,255,255,0.05);
+      border:1px solid #0c525d;
+      border-radius:8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:18px;
+      color:white;
+      cursor:pointer;
+      position:relative;
     }
-    .panel { padding: 0; }
-
-    .source-menu { position:absolute; background:#03191b;
-      border:1px solid #0c525d; border-radius:8px;
-      padding:10px; display:none; flex-direction:column;
-      gap:8px; z-index:100;
-    }
-    .source-menu button {
-      background:rgba(255,255,255,0.1);
-      border:none; border-radius:8px;
-      color:white; padding:6px 10px;
-      text-align:left; cursor:pointer;
-    }
+    .layout-large2 .center { flex:2; height:300px; }
+    .layout-large2 .side { flex:1; height:300px; }
+    .layout-single .panel, .layout-dual .panel, .layout-quad .panel { padding:20px; }
+    .source-menu { position:absolute; background:#03191b; border:1px solid #0c525d; border-radius:8px; padding:10px; display:none; flex-direction:column; gap:8px; z-index:100; }
+    .source-menu button { background:rgba(255,255,255,0.1); border:none; border-radius:8px; color:white; padding:6px 10px; text-align:left; cursor:pointer; }
     .source-menu button:hover { background:rgba(255,255,255,0.2); }
-
     /* IPTV */
     .iptv-search { display:flex; align-items:center; gap:16px; margin-bottom:20px; }
     .iptv-search input { flex:1; padding:10px 14px; border-radius:12px; border:none; }
-    .iptv-search button { background:rgba(255,255,255,0.05);
-      border:1px solid #0c525d; color:white;
-      padding:10px 20px; border-radius:12px;
-      cursor:pointer;
-    }
+    .iptv-search button { background:rgba(255,255,255,0.05); border:1px solid #0c525d; color:white; padding:10px 20px; border-radius:12px; cursor:pointer; }
     .iptv-search button.active, .iptv-search button:hover { background:rgba(255,255,255,0.1); }
     .iptv-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px 20px; }
-    .iptv-grid button {
-      display:flex; justify-content:space-between;
-      align-items:center; padding:12px 16px;
-      background:#0d3b3f; border:none;
-      color:white; border-radius:12px;
-      font-size:14px;
-    }
+    .iptv-grid button { display:flex; justify-content:space-between; align-items:center; padding:12px 16px; background:#0d3b3f; border:none; color:white; border-radius:12px; font-size:14px; transition:background .2s; }
     .iptv-grid button:hover { background:#12555a; }
     .iptv-grid .number { opacity:0.8; margin-right:12px; width:20px; text-align:left; }
     .iptv-grid img { width:18px; height:18px; }
-
-    .volume-control { position:absolute; bottom:10px; left:10px;
-      width:160px; text-align:center; font-size:12px;
-    }
-    .volume-control input { width:100%; height:18px;
-      -webkit-appearance:none;
-      background:linear-gradient(to right,white var(--vol)%,#ffecb3 var(--vol)%);
-      border-radius:5px; outline:none;
-    }
+    /* Volume Control */
+    .volume-control { position:absolute; bottom:10px; left:10px; width:160px; text-align:center; font-size:12px; }
+    .volume-control input { width:100%; height:18px; -webkit-appearance:none; background:linear-gradient(to right,white var(--vol),#ffecb3 var(--vol)); border-radius:5px; outline:none; }
     .volume-label { margin-bottom:4px; }
-
-    .version { position:absolute; bottom:10px;
-      left:50%; transform:translateX(-50%);
-      font-size:12px; color:#ccc;
-    }
+    /* Version */
+    .version { position:absolute; bottom:10px; left:50%; transform:translateX(-50%); font-size:12px; color:#ccc; }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="sidebar" id="sidebar">
-      <!-- Sidebar buttons -->
-      <button onclick="navigate('main')"><img src="https://img.icons8.com/ios-filled/100/home.png"/><span>Home</span></button>
-      <button onclick="navigate('videoWall')"><img src="https://img.icons8.com/ios-filled/100/video-wall.png"/><span>Video Wall</span></button>
-      <button onclick="navigate('apple')"><img src="https://img.icons8.com/ios-filled/100/mac-os.png"/><span>Apple TV</span></button>
-      <button onclick="navigate('iptv')"><img src="https://img.icons8.com/ios-filled/100/monitor--v1.png"/><span>IP TV</span></button>
-      <button onclick="navigate('laptop1')"><img src="https://img.icons8.com/ios-filled/100/laptop.png"/><span>Laptop 1</span></button>
-      <button onclick="navigate('laptop2')"><img src="https://img.icons8.com/ios-filled/100/laptop.png"/><span>Laptop 2</span></button>
-      <button onclick="navigate('laptop3')"><img src="https://img.icons8.com/ios-filled/100/laptop.png"/><span>Laptop 3</span></button>
-      <button onclick="navigate('laptop4')"><img src="https://img.icons8.com/ios-filled/100/laptop.png"/><span>Laptop 4</span></button>
-      <!-- Volume control -->
+      <button onclick="navigate('main')"><img src="https://img.icons8.com/ios-filled/100/home.png" alt="Home"/><span>Home</span></button>
+      <button onclick="navigate('videoWall')"><img src="https://img.icons8.com/ios-filled/100/video-wall.png" alt="Video Wall"/><span>Video Wall</span></button>
+      <button onclick="navigate('apple')"><img src="https://img.icons8.com/ios-filled/100/mac-os.png" alt="Apple TV"/><span>Apple TV</span></button>
+      <button onclick="navigate('iptv')"><img src="https://img.icons8.com/ios-filled/100/monitor--v1.png" alt="IP TV"/><span>IP TV</span></button>
+      <button onclick="navigate('laptop1')"><img src="https://img.icons8.com/ios-filled/100/laptop.png" alt="Laptop 1"/><span>Laptop 1</span></button>
+      <button onclick="navigate('laptop2')"><img src="https://img.icons8.com/ios-filled/100/laptop.png" alt="Laptop 2"/><span>Laptop 2</span></button>
+      <button onclick="navigate('laptop3')"><img src="https://img.icons8.com/ios-filled/100/laptop.png" alt="Laptop 3"/><span>Laptop 3</span></button>
+      <button onclick="navigate('laptop4')"><img src="https://img.icons8.com/ios-filled/100/laptop.png" alt="Laptop 4"/><span>Laptop 4</span></button>
       <div class="volume-control" id="volumeContainer">
         <div class="volume-label">Volume</div>
-        <input id="volumeSlider" type="range" min="0" max="100" value="77" oninput="updateVolumeDisplay(this.value)" style="--vol:77"/>
+        <input id="volumeSlider" type="range" min="0" max="100" value="77" oninput="updateVolumeDisplay(this.value)">
         <div id="volumeValue">77%</div>
       </div>
     </div>
     <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
 
-    <div class="content active" id="main">
+    <!-- Main Section -->
+    <div class="content" id="main">
       <div class="content-box">
         <h2>Currently viewing <span style="opacity:0.7">MTR</span></h2>
-        <p>Please make a selection on<br>the LEFT Sidebar</p>
+        <p>Please select from the LEFT Sidebar</p>
       </div>
     </div>
 
+    <!-- Video Wall Section -->
     <div class="content" id="videoWall">
-      <div class="bezel">
-        <div class="inner content-box layout-single" id="videoWallBox">
-          <div class="layout-controls">
-            <button data-layout="single"><img src="https://img.icons8.com/?size=100&id=4knsel5keE42&format=png&color=000000"/><span>Single</span></button>
-            <button data-layout="dual"><img src="https://img.icons8.com/?size=100&id=69884&format=png&color=000000"/><span>Dual</span></button>
-            <button data-layout="quad"><img src="https://img.icons8.com/?size=100&id=69898&format=png&color=000000"/><span>Quad</span></button>
-            <button data-layout="large2"><img src="https://img.icons8.com/?size=100&id=105398&format=png&color=000000"/><span>Large Center + 2</span></button>
-          </div>
-          <div class="panel-container" id="panelContainer"></div>
-          <div class="source-menu" id="sourceMenu"></div>
+      <div class="content-box layout-single" id="videoWallBox">
+        <h2>Video Wall Layout</h2>
+        <div class="layout-controls">
+          <button data-layout="single"><img src="https://img.icons8.com/?size=100&id=4knsel5keE42&format=png&color=000000"/><span>Single</span></button>
+          <button data-layout="dual"><img src="https://img.icons8.com/?size=100&id=69884&format=png&color=000000"/><span>Dual</span></button>
+          <button data-layout="quad"><img src="https://img.icons8.com/?size=100&id=69898&format=png&color=000000"/><span>Quad</span></button>
+          <button data-layout="large2"><img src="https://img.icons8.com/?size=100&id=105398&format=png&color=000000"/><span>Large Center + 2</span></button>
+        </div>
+        <div class="panel-container" id="panelContainer"></div>
+        <div class="source-menu" id="sourceMenu"></div>
+      </div>
+    </div>
+
+    <!-- Apple TV Section -->
+    <div class="content" id="apple">
+      <div class="content-box">
+        <h2>Apple TV Control</h2>
+        <img class="remote" src="https://cdsassets.apple.com/live/7WUAS350/images/apple-tv/apple-tv-siri-remote-2gen.png" alt="Apple TV Remote" style="width:200px;"/>
+      </div>
+    </div>
+
+    <!-- IP TV Section -->
+    <div class="content" id="iptv">
+      <div class="content-box">
+        <h2>IP TV Channels</h2>
+        <div class="iptv-search">
+          <input type="text" placeholder="Search...">
+          <button class="active">Home</button>
+          <button>Favorites</button>
+        </div>
+        <div class="iptv-grid">
+          <button><span class="number">1</span>Spectrum News NY1<img src="https://img.icons8.com/ios-filled/18/ffffff/like--v1.png"/></button>
+          <button><span class="number">2</span>WCBS<img src="https://img.icons8.com/ios-filled/18/ffffff/like--v1.png"/></button>
+          <button><span class="number">4</span>WNBC<img src="https://img.icons8.com/ios-filled/18/ffffff/like--v1.png"/></button>
+          <button><span class="number">5</span>WNYW<img src="https://img.icons8.com/ios-filled/18/ffffff/like--v1.png"/></button>
+          <button><span class="number">7</span>WABC<img src="https://img.icons8.com/ios-filled/18/ffffff/like--v1.png"/></button>
+          <button><span class="number">8</span>ABC 24/7 Live Stream<img src="https://img.icons8.com/ios-filled/18/ffffff/like--v1.png"/></button>
+          <button><span class="number">11</span>WPIX<img src="https://img.icons8.com/ios-filled/18/ffffff/like--v1.png"/></button>
+          <button><span class="number">14</span>Local Station Quad<img src="https://img.icons8.com/ios-filled/18/ffffff/like--v1.png"/></button>
+          <button><span class="number">15</span>Cable News Quad<img src="https://img.icons8.com/ios-filled/18/ffffff/like--v1.png"/></button>
+          <button><span class="number">17</span>WXTV Univision<img src="https://img.icons8.com/ios-filled/18/ffffff/like--v1.png"/></button>
+          <button><span class="number">18</span>WNJU Telemundo<img src="https://img.icons8.com/ios-filled/18/ffffff/like--v1.png"/></button>
+          <button><span class="number">19</span>WFUT UniMás<img src="https://img.icons8.com/ios-filled/18/ffffff/like--v1.png"/></button>
+          <button><span class="number">21</span>WCBS-TV<img src="https://img.icons8.com/ios-filled/18/ffffff/like--v1.png"/></button>
+          <button><span class="number">33</span>WZME-TV MeTV<img src="https://img.icons8.com/ios-filled/18/ffffff/like--v1.png"/></button>
+          <button><span class="number">41</span>WNBC-TV<img src="https://img.icons8.com/ios-filled/18/ffffff/like--v1.png"/></button>
+          <button><span class="number">42</span>WNBC-TV Cozi TV<img src="https://img.icons8.com/ios-filled/18/ffffff/like--v1.png"/></button>
         </div>
       </div>
     </div>
 
-    <div class="content" id="apple">
-      <div class="content-box">
-        <h2>Apple TV Control</h2>
-        <img class="remote" src="https://cdsassets.apple.com/live/7WUAS350/images/apple-tv/apple-tv-siri-remote-2gen.png" alt="Apple TV Remote"/>
-      </div>
-    </div>
-
-    <div class="content" id="iptv">
-      <div class="content-box">
-        <h2>IP TV Channels</h2>
-        <div class="iptv-search"><input type="text" placeholder="Search..."/><button class="active">Home</button><button>Favorites</button></div>
-        <div class="iptv-grid" id="iptvGrid"></div>
-      </div>
-    </div>
-
+    <!-- Laptop Sections -->
     <div class="content" id="laptop1"><div class="content-box"><h2>Currently Sharing<br>LAPTOP 1</h2></div></div>
     <div class="content" id="laptop2"><div class="content-box"><h2>Currently Sharing<br>LAPTOP 2</h2></div></div>
     <div class="content" id="laptop3"><div class="content-box"><h2>Currently Sharing<br>LAPTOP 3</h2></div></div>
     <div class="content" id="laptop4"><div class="content-box"><h2>Currently Sharing<br>LAPTOP 4</h2></div></div>
+
   </div>
-  <div class="version">Version 2.1</div>
+  <div class="version">Version 2.2</div>
 
-  <script defer>
-    window.navigate = navigate;
-    window.toggleSidebar = toggleSidebar;
-
+  <script>
     let currentLayout = 'single';
     const sources = ['Apple TV','IP TV','Laptop 1','Laptop 2','Laptop 3','Laptop 4'];
     let panels = [];
     let activePanel = null;
-
-    // Populate IPTV grid
-    const iptvChannels = [
-      'Spectrum News NY1','WCBS','WNBC','WNYW','WABC','ABC 24/7 Live Stream',
-      'WPIX','Local Station Quad','Cable News Quad','WXTV Univision','WNJU Telemundo',
-      'WFUT UniMás','WCBS-TV','WZME-TV MeTV','WNBC-TV','WNBC-TV Cozi TV'
-    ];
-    function renderIPTV() {
-      const grid = document.getElementById('iptvGrid');
-      grid.innerHTML = '';
-      iptvChannels.forEach((ch, i) => {
-        const btn = document.createElement('button');
-        btn.innerHTML = `<span class="number">${i===0?1: i+ (i>0?1:0)}</span>${ch}<img src=\"https://img.icons8.com/ios/18/ffffff/like--v1.png\"/>`;
-        grid.appendChild(btn);
-      });
-    }
-
-    function navigate(id) {
+    function navigate(page) {
       document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      if (id === 'videoWall') initVideoWall();
-      if (id === 'iptv') renderIPTV();
+      const target = document.getElementById(page);
+      if (target) target.classList.add('active');
+      if (page==='videoWall') initVideoWall();
     }
-
     function toggleSidebar() {
       const sb = document.getElementById('sidebar');
       const vc = document.getElementById('volumeContainer');
-      sb.classList.toggle('collapsed');
-      vc.style.display = sb.classList.contains('collapsed') ? 'none' : 'block';
+      sb.classList.toggle('collapsed'); vc.style.display = sb.classList.contains('collapsed')?'none':'block';
     }
-
     function updateVolumeDisplay(v) {
-      document.getElementById('volumeValue').innerText = v + '%';
-      document.getElementById('volumeSlider').style.setProperty('--vol', v);
+      document.documentElement.style.setProperty('--vol', v+'%');
+      document.getElementById('volumeValue').innerText = v+'%';
     }
-
     function initVideoWall() {
       const box = document.getElementById('videoWallBox');
-      box.className = 'inner content-box layout-' + currentLayout;
-      const countMap = { single:1, dual:2, quad:4, large2:3 };
-      panels = Array(countMap[currentLayout]).fill(null);
+      box.className = 'content-box layout-'+currentLayout;
+      const count = {single:1,dual:2,quad:4,large2:3}[currentLayout];
+      panels = Array(count).fill(null);
       renderPanels();
-      document.querySelectorAll('.layout-controls button').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.layout === currentLayout);
-        btn.onclick = () => { currentLayout = btn.dataset.layout; initVideoWall(); };
+      document.querySelectorAll('.layout-controls button').forEach(btn=>{
+        btn.classList.toggle('active',btn.dataset.layout===currentLayout);
+        btn.onclick=()=>{currentLayout=btn.dataset.layout;initVideoWall();};
       });
     }
-
     function renderPanels() {
-      const container = document.getElementById('panelContainer');
-      container.innerHTML = '';
-      panels.forEach((src, i) => {
-        const div = document.createElement('div');
-        div.className = 'panel';
-        div.innerText = src || 'Select Source';
-        div.onclick = e => { activePanel = i; showSourceMenu(e.clientX, e.clientY); };
-        container.appendChild(div);
-      });
+      const c = document.getElementById('panelContainer');c.innerHTML='';
+      panels.forEach((s,i)=>{ const div=document.createElement('div');div.className='panel '+(currentLayout==='large2'?i===1?'center':'side':'');div.innerText=s||'Select Source';div.addEventListener('click',e=>{activePanel=i;showSourceMenu(e);});c.appendChild(div); });
     }
-
-    function showSourceMenu(x,y) {
-      const menu = document.getElementById('sourceMenu'); menu.innerHTML = '';
-      sources.forEach(s => {
-        const btn = document.createElement('button'); btn.innerText = s;
-        btn.onclick = () => { panels[activePanel] = s; hideSourceMenu(); renderPanels(); };
-        menu.appendChild(btn);
-      });
-      menu.style.display = 'flex'; menu.style.top = y+'px'; menu.style.left = x+'px';
+    function showSourceMenu(e) {
+      const menu=document.getElementById('sourceMenu');menu.innerHTML='';
+      sources.forEach(s=>{const btn=document.createElement('button');btn.innerText=s;btn.onclick=()=>{panels[activePanel]=s;hideSourceMenu();renderPanels();};menu.appendChild(btn);});
+      menu.style.display='flex';menu.style.top=e.clientY+'px';menu.style.left=e.clientX+'px';
     }
-    function hideSourceMenu() { document.getElementById('sourceMenu').style.display = 'none'; }
-
-    document.addEventListener('click', e => {
-      const menu = document.getElementById('sourceMenu');
-      if (menu.style.display === 'flex' && !menu.contains(e.target) && !e.target.classList.contains('panel')) hideSourceMenu();
-    });
-
-    document.addEventListener('DOMContentLoaded', () => navigate('main'));
+    function hideSourceMenu(){document.getElementById('sourceMenu').style.display='none';}
+    document.addEventListener('click',e=>{const m=document.getElementById('sourceMenu');if(m.style.display==='flex'&&!m.contains(e.target)&&!e.target.classList.contains('panel'))hideSourceMenu();});
+    navigate('main');
   </script>
 </body>
 </html>

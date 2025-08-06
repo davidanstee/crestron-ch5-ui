@@ -29,17 +29,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 10px 0 100px 0;
-      transition: width 0.3s ease-in-out;
+      padding: 10px 0 100px;
+      transition: width 0.3s;
       overflow: hidden;
-      animation: fadeIn 0.5s ease;
       position: relative;
     }
-    .sidebar.collapsed {
-      width: 50px;
-    }
+    .sidebar.collapsed { width: 50px; }
     .sidebar button {
-      background-color: rgba(255, 255, 255, 0.1);
+      background: rgba(255,255,255,0.1);
       border: none;
       border-radius: 40px;
       width: 140px;
@@ -51,138 +48,151 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      animation: slideInLeft 0.4s ease;
-      transition: background-color 0.2s, transform 0.3s;
+      transition: background 0.2s;
     }
-    .sidebar.collapsed button {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
-    .sidebar button:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-    .sidebar img {
-      width: 30px;
-      height: 30px;
-      margin-bottom: 5px;
-      filter: brightness(0) invert(1);
-    }
-    .sidebar.collapsed img {
-      width: 20px;
-      height: 20px;
-    }
-    .sidebar span {
-      color: white;
-      font-size: 12px;
-    }
-    .sidebar.collapsed span {
-      display: none;
-    }
+    .sidebar.collapsed button { width: 40px; height: 40px; border-radius: 50%; }
+    .sidebar button:hover { background: rgba(255,255,255,0.2); }
+    .sidebar img { width: 30px; height: 30px; margin-bottom:5px; filter: brightness(0) invert(1); }
+    .sidebar.collapsed img { width:20px; height:20px; }
+    .sidebar span { color: white; font-size:12px; }
+    .sidebar.collapsed span { display: none; }
     .toggle-btn {
       position: absolute;
       top: 20px;
       left: 180px;
-      background-color: #0d3b3f;
+      background: #0d3b3f;
       border: none;
       color: white;
       font-size: 20px;
       cursor: pointer;
-      z-index: 999;
-      transition: left 0.3s ease;
-      border-radius: 0 5px 5px 0;
+      z-index: 10;
       padding: 5px 10px;
+      border-radius: 0 5px 5px 0;
+      transition: left 0.3s;
     }
-    .sidebar.collapsed + .toggle-btn {
-      left: 50px;
-    }
+    .sidebar.collapsed + .toggle-btn { left: 50px; }
     .content {
       flex-grow: 1;
       padding: 40px;
       display: none;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       text-align: center;
-      animation: fadeIn 0.5s ease;
     }
-    .content.active {
-      display: flex;
-    }
+    .content.active { display: flex; }
     .content-box {
-      background-color: rgba(0, 0, 0, 0.2);
+      background: rgba(0,0,0,0.2);
       padding: 40px;
       border-radius: 16px;
-      max-width: 600px;
       width: 100%;
-    }
-    .remote {
-      width: 200px;
+      max-width: 900px;
+      color: white;
     }
     .video-wall-options, .iptv-options {
+      margin-top: 20px;
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
       justify-content: center;
-      animation: fadeIn 0.6s ease;
     }
     .video-wall-options button, .iptv-options button {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255,255,255,0.05);
       border: 1px solid #0c525d;
       color: white;
       padding: 10px 20px;
       border-radius: 8px;
       transition: transform 0.2s;
     }
-    .video-wall-options button:hover, .iptv-options button:hover {
-      transform: scale(1.1);
+    .video-wall-options button:hover, .iptv-options button:hover { transform: scale(1.05); }
+    /* IPTV specific */
+    .iptv-search {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
     }
+    .iptv-search input {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: none;
+    }
+    .iptv-search button {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid #0c525d;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    .iptv-search button.active, .iptv-search button:hover { background: rgba(255,255,255,0.1); }
+    .iptv-grid {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      /* removed fixed max-height to fit content */
+      /* max-height: 400px; */
+      /* overflow-y: auto; */
+      padding-right: 4px;
+    }
+    .iptv-grid button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: #0d3b3f;
+      border: none;
+      color: white;
+      border-radius: 12px;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+
+    .iptv-grid button:hover {
+      background: #12555a;
+    }
+    .iptv-grid button span.number {
+      opacity: 0.8;
+      margin-right: 12px;
+      width: 20px;
+      text-align: left;
+    }
+    .iptv-grid button img { width: 18px; height: 18px; }
     .volume-control {
       position: absolute;
       bottom: 10px;
       left: 10px;
       width: 160px;
       text-align: center;
-      color: white;
       font-size: 12px;
     }
-    .volume-control input[type=range] {
-      -webkit-appearance: none;
+    .volume-control input {
       width: 100%;
       height: 18px;
+      -webkit-appearance: none;
       background: linear-gradient(to right, white 77%, #ffecb3 77%);
       border-radius: 5px;
       outline: none;
     }
-    .volume-label {
-      margin-bottom: 5px;
-    }
-    .volume-percentage {
-      margin-top: 5px;
-    }
+    .volume-label { margin-bottom: 4px; }
     .version {
-      text-align: center;
-      font-size: 12px;
-      color: #ccc;
-      margin: 10px 0;
       position: absolute;
       bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes slideInLeft {
-      from { transform: translateX(-50px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+      font-size: 12px;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="sidebar" id="sidebar">
+      <button onclick="navigate('main')">
+        <img src="https://img.icons8.com/ios-filled/100/home.png" alt="Home">
+        <span>Home</span>
+      </button>
       <button onclick="navigate('videoWall')">
         <img src="https://img.icons8.com/ios-filled/100/video-wall.png" alt="Video Wall">
         <span>Video Wall</span>
@@ -214,15 +224,44 @@
       <div class="volume-control" id="volumeContainer">
         <div class="volume-label">Volume</div>
         <input id="volumeSlider" type="range" min="0" max="100" value="77" oninput="updateVolumeDisplay(this.value)">
-        <div id="volumeValue" class="volume-percentage">77%</div>
+        <div id="volumeValue">77%</div>
       </div>
     </div>
     <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
 
     <div class="content active" id="main">
       <div class="content-box">
-        <h2>Currently viewing <span style="color: grey">MTR</span></h2>
+        <h2>Currently viewing <span style="opacity:0.7">MTR</span></h2>
         <p>Please make a selection on<br>the LEFT Sidebar</p>
+      </div>
+    </div>
+
+    <div class="content" id="iptv">
+      <div class="content-box">
+        <h2>IP TV Channels</h2>
+        <div class="iptv-search">
+          <input type="text" placeholder="Search...">
+          <button class="active">Home</button>
+          <button>Favorites</button>
+        </div>
+        <div class="iptv-grid">
+          <button><span class="number">1</span>Spectrum News NY1<img src="https://img.icons8.com/ios-glyphs/30/ffffff/like--v1.png" alt="favorite"/></button>
+          <button><span class="number">2</span>WCBS<img src="https://img.icons8.com/ios-glyphs/30/ffffff/like--v1.png" alt="favorite"/></button>
+          <button><span class="number">4</span>WNBC<img src="https://img.icons8.com/ios-glyphs/30/ffffff/like--v1.png" alt="favorite"/></button>
+          <button><span class="number">5</span>WNYW<img src="https://img.icons8.com/ios-glyphs/30/ffffff/like--v1.png" alt="favorite"/></button>
+          <button><span class="number">7</span>WABC<img src="https://img.icons8.com/ios-glyphs/30/ffffff/like--v1.png" alt="favorite"/></button>
+          <button><span class="number">8</span>ABC 24/7 Live Stream<img src="https://img.icons8.com/ios-glyphs/30/ffffff/like--v1.png" alt="favorite"/></button>
+          <button><span class="number">11</span>WPIX<img src="https://img.icons8.com/ios-glyphs/30/ffffff/like--v1.png" alt="favorite"/></button>
+          <button><span class="number">14</span>Local Station Quad<img src="https://img.icons8.com/ios-glyphs/30/ffffff/like--v1.png" alt="favorite"/></button>
+          <button><span class="number">15</span>Cable News Quad<img src="https://img.icons8.com/ios-glyphs/30/ffffff/like--v1.png" alt="favorite"/></button>
+          <button><span class="number">17</span>WXTV Univision<img src="https://img.icons8.com/ios-glyphs/30/ffffff/like--v1.png" alt="favorite"/></button>
+          <button><span class="number">18</span>WNJU Telemundo<img src="https://img.icons8.com/ios-glyphs/30/ffffff/like--v1.png" alt="favorite"/></button>
+          <button><span class="number">19</span>WFUT UniMás<img src="https://img.icons8.com/ios-glyphs/30/ffffff/like--v1.png" alt="favorite"/></button>
+          <button><span class="number">21</span>WCBS-TV<img src="https://img.icons8.com/ios-glyphs/30/ffffff/like--v1.png" alt="favorite"/></button>
+          <button><span class="number">33</span>WZME-TV MeTV<img src="https://img.icons8.com/ios-glyphs/30/ffffff/like--v1.png" alt="favorite"/></button>
+          <button><span class="number">41</span>WNBC-TV<img src="https://img.icons8.com/ios-glyphs/30/ffffff/mickey-мouse.png" alt="favorite"/></button>
+          <button><span class="number">42</span>WNBC-TV Cozi TV<img src="https://img.icons8.com/ios-glyphs/30/ffffff/mickey-мouse.png" alt="favorite"/></button>
+        </div>
       </div>
     </div>
 
@@ -245,63 +284,26 @@
       </div>
     </div>
 
-    <div class="content" id="iptv">
-      <div class="content-box">
-        <h2>IP TV Channels</h2>
-        <div class="iptv-options">
-          <button>Spectrum</button>
-          <button>WABC</button>
-          <button>WPIX</button>
-          <button>Telemundo</button>
-          <button>MeTV</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="content" id="laptop1">
-      <div class="content-box">
-        <h2>Currently Sharing<br>LAPTOP 1</h2>
-      </div>
-    </div>
-    <div class="content" id="laptop2">
-      <div class="content-box">
-        <h2>Currently Sharing<br>LAPTOP 2</h2>
-      </div>
-    </div>
-    <div class="content" id="laptop3">
-      <div class="content-box">
-        <h2>Currently Sharing<br>LAPTOP 3</h2>
-      </div>
-    </div>
-    <div class="content" id="laptop4">
-      <div class="content-box">
-        <h2>Currently Sharing<br>LAPTOP 4</h2>
-      </div>
-    </div>
+    <div class="content" id="laptop1"><div class="content-box"><h2>Currently Sharing<br>LAPTOP 1</h2></div></div>
+    <div class="content" id="laptop2"><div class="content-box"><h2>Currently Sharing<br>LAPTOP 2</h2></div></div>
+    <div class="content" id="laptop3"><div class="content-box"><h2>Currently Sharing<br>LAPTOP 3</h2></div></div>
+    <div class="content" id="laptop4"><div class="content-box"><h2>Currently Sharing<br>LAPTOP 4</h2></div></div>
   </div>
-  <div class="version">Version 1.0.8</div>
+  <div class="version">Version 1.0.9</div>
   <script>
     function navigate(pageId) {
-      const sections = document.querySelectorAll('.content');
-      sections.forEach(section => {
-        section.classList.remove('active');
-        if (section.id === pageId) {
-          section.classList.add('active');
-        }
-      });
+      document.querySelectorAll('.content').forEach(s => s.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
     }
-
     function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      const volumeContainer = document.getElementById('volumeContainer');
-      sidebar.classList.toggle('collapsed');
-      volumeContainer.style.display = sidebar.classList.contains('collapsed') ? 'none' : 'block';
+      const sb = document.getElementById('sidebar');
+      const vc = document.getElementById('volumeContainer');
+      sb.classList.toggle('collapsed');
+      vc.style.display = sb.classList.contains('collapsed') ? 'none' : 'block';
     }
-
-    function updateVolumeDisplay(val) {
-      document.getElementById('volumeValue').innerText = val + '%';
-      const slider = document.getElementById('volumeSlider');
-      slider.style.background = `linear-gradient(to right, white ${val}%, #ffecb3 ${val}%)`;
+    function updateVolumeDisplay(v) {
+      document.getElementById('volumeValue').innerText = v + '%';
+      document.getElementById('volumeSlider').style.background = `linear-gradient(to right, white ${v}%, #ffecb3 ${v}%)`;
     }
   </script>
 </body>
